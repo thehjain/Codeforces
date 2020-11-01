@@ -21,7 +21,13 @@ public class B {
 
 	static void solve() throws IOException {
 
-		System.out.println("hello");
+		String[] input = br.readLine().trim().split(" ");
+		int a = Integer.parseInt(input[0]);
+		int b = Integer.parseInt(input[1]);
+		int c = Integer.parseInt(input[2]);
+		int d = Integer.parseInt(input[3]);
+
+		System.out.println(Math.max(a + b, c + d));
 
 	}
 
