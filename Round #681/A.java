@@ -21,8 +21,14 @@ public class A {
 
 	static void solve() throws IOException {
 
-		System.out.println("hello");
+		int n = Integer.parseInt(br.readLine());
 
+		int res = 2 * n;
+		for (int i = 1; i <= n; i++) {
+			System.out.print( res + " ");
+			res += 2;
+		}
+		System.out.println();
 	}
 
 }
