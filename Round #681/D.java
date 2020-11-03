@@ -1,6 +1,4 @@
 
-
-
 import java.util.*;
 import java.io.*;
 import java.math.*;
@@ -24,8 +22,8 @@ public class D {
 		int n = Integer.parseInt(br.readLine());
 		String[] str = br.readLine().trim().split(" ");
 
-		int[] arr = new int[n];
-		int index = 0;
+		int[] arr = new int[n + 1];
+		int index = 1;
 
 		for (String ele : str)
 			arr[index++] = Integer.parseInt(ele);
@@ -39,29 +37,23 @@ public class D {
 
 	static boolean isPossible(int[] arr, int n) {
 
-		ArrayList<Integer> res = new ArrayList<>();
-		ArrayList<Integer> res1 = new ArrayList<>();
+		int[] diff = new int[n + 1];
 
-		for (int i = 1; i < n - 1; i++) {
+		for (int i = 1; i <= n; i++)
+			diff[i] = arr[i] - arr[i - 1];
+		int max = diff[1];
 
-			if ((arr[i] > arr[i - 1] && arr[i] > arr[i + 1]))
-				res.add(arr[i]);
-			if (arr[i] < arr[i - 1] && arr[i] < arr[i + 1])
-				res1.add(arr[i]);
-		}
+		for (int i = 2; i <= n; i++)
+			if (diff[i] < 0 && max + diff[i] >= 0) {
+				max += diff[i];
+				diff[i] = 0;
+			}
+		boolean flag = true;
 
-		for (int i = 1; i < res.size() - 1; i++) {
-			if ((res.get(i) >= res.get(i - 1) && res.get(i) >= res.get(i + 1)) ||
-			        res.get(i) <= res.get(i - 1) && res.get(i) <= res.get(i + 1))
-				return false;
-		}
-		for (int i = 1; i < res1.size() - 1; i++) {
-			if ((res1.get(i) >= res1.get(i - 1) && res1.get(i) >= res1.get(i + 1)) ||
-			        res1.get(i) <= res1.get(i - 1) && res1.get(i) <= res1.get(i + 1))
-				return false;
-		}
+		for (int i = 1; i <= n; i++)
+			flag = (flag && diff[i] >= 0);
 
-		return true;
+		return flag;
 	}
 
 }
