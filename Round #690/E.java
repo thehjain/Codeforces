@@ -37,27 +37,35 @@ public class E {
 		// 	System.out.print(ele + " ");
 		// System.out.println();
 
-		for (int i = 0; i < n - 2; i++) {
-			int j = i + 1;
-			int count = 0;
-			while (j < n && arr[j] - arr[i] <= 2) {
-				count++;
+		int j = 0;
+
+		for (int i = 0; i < n; i++) {
+
+			while (j < n && arr[j] - arr[i] <= 2)
 				j++;
-			}
-			if (j - i <= 2) continue;
-			res += fact(count) / (fact(count - 2) * 2);
-			//System.out.println(res);
+			long temp = j - i - 1;
+			res += (temp) * (temp - 1) / 2;
+
+			// int j = i + 1;
+			// // int count = 0;
+			// while (j < n && arr[j] - arr[i] <= 2) {
+			// 	//count++;
+			// 	j++;
+			// }
+			// long count = j - i - 1;
+			// res += count * (count - 1) / 2;
+			// //System.out.println(res);
 		}
 
 		System.out.println(res);
 
 	}
 
-	static long fact(int count) {
-		long res = 1;
-		for (int i = 1; i <= count; i++)
-			res *= i;
-		return res;
-	}
+	// static long fact(int count) {
+	// 	long res = 1;
+	// 	for (int i = 1; i <= count; i++)
+	// 		res *= i;
+	// 	return res;
+	// }
 
 }
