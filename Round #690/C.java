@@ -21,8 +21,32 @@ public class C {
 
 	static void solve() throws IOException {
 
-		System.out.println("hello");
+		int n = Integer.parseInt(br.readLine());
 
+		if (n > 45) {
+			System.out.println(-1);
+			return;
+		} else if (n <= 9) {
+			System.out.println(n);
+			return;
+		} else {
+			ArrayList<Integer> arr = new ArrayList<>();
+			for (int i = 1; i <= 9; i++)
+				arr.add(i);
+			String s = "";
+			while (n != 0) {
+				if (n < arr.get(arr.size() - 1)) {
+					s += n;
+					break;
+				}
+				n -= arr.get(arr.size() - 1);
+				s += Integer.toString(arr.get(arr.size() - 1));
+				arr.remove(arr.size() - 1);
+			}
+			StringBuilder str = new StringBuilder(s);
+			str.reverse();
+			System.out.println(str.toString());
+		}
 	}
 
 }
