@@ -21,7 +21,22 @@ public class A {
 
 	static void solve() throws IOException {
 
-		System.out.println("hello");
+		int n = Integer.parseInt(br.readLine());
+		String s = br.readLine();
+
+		char[] arr = s.toCharArray();
+		int count = 0;
+
+		for (int i = n - 1; i >= 0; i--)
+			if (arr[i] != ')')
+				break;
+			else
+				count++;
+
+		if (count > n / 2)
+			System.out.println("Yes");
+		else
+			System.out.println("No");
 
 	}
 
