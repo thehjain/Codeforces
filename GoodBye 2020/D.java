@@ -24,17 +24,15 @@ public class D {
 		int n = Integer.parseInt(br.readLine());
 		String[] input = br.readLine().trim().split(" ");
 
-		HashMap<Integer, Integer> map = new HashMap<>();
+		HashMap<Long, Integer> map = new HashMap<>();
 
-		int[] arr = new int[n];
+		long[] arr = new long[n];
 		int index = 0;
 		for (String ele : input) {
-			int curr = Integer.parseInt(ele);
+			long curr = Long.parseLong(ele);
 			arr[index++] = curr;
-			// if (map.containsKey(curr)) {
-			// 	map.put(curr, map.get(curr) + 1);
-			// } else
-			map.put(curr, 0);
+			if (!map.containsKey(curr))
+				map.put(curr, 0);
 		}
 
 		for (int i = 0; i < n - 1; i++) {
@@ -50,7 +48,7 @@ public class D {
 		Arrays.sort(arr);
 
 		long sum = 0;
-		for (int ele : arr)
+		for (long ele : arr)
 			sum += ele;
 
 		System.out.print(sum + " ");
@@ -65,6 +63,9 @@ public class D {
 				}
 			}
 		}
+		// System.out.println();
+		// for (long ele : arr)
+		// 	System.out.print(map.get(ele) + " ");
 		System.out.println();
 	}
 
