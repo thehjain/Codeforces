@@ -21,7 +21,29 @@ public class A {
 
 	static void solve() throws IOException {
 
-		System.out.println("hello");
+		int n = Integer.parseInt(br.readLine());
+		String[] input = br.readLine().trim().split(" ");
+
+		int[] arr = new int[n];
+		int index = 0;
+		for (String ele : input)
+			arr[index++] = Integer.parseInt(ele);
+
+		if (n == 1) {
+			System.out.println(0);
+			return;
+		} else if (n == 2) {
+			System.out.println(1);
+			return;
+		}
+
+		HashSet<Integer> set = new HashSet<>();
+
+		for (int i = 0; i < n; i++)
+			for (int j = i + 1; j < n; j++)
+				set.add(arr[i] - arr[j]);
+
+		System.out.println(set.size());
 
 	}
 
