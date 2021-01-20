@@ -4,6 +4,14 @@ import java.math.*;
 
 class C {
 
+	static class Pair {
+		int a, b;
+		Pair(int a, int b) {
+			this.a = a;
+			this.b = b;
+		}
+	}
+
 	private static int MAX = Integer.MAX_VALUE;
 	private static int MIN = Integer.MIN_VALUE;
 	private static int MOD = 1000000007;
@@ -18,7 +26,99 @@ class C {
 
 	static void solve() throws IOException {
 
+		int n = sc.nextInt() * 2;
 
+		Pair[] pairs = new Pair[(n / 2) + 1];
+		HashMap<Integer, Integer> map = new HashMap<>();
+
+		int index = 1;
+
+		int[] arr = new int[n];
+
+		for (int i = 0; i < n; i++) {
+			arr[i] = sc.nextInt();
+		}
+
+		Arrays.sort(arr);
+		boolean flag = true;
+
+		int sum = arr[n - 1];
+
+		for (int j = 0; j < n - 1; j++) {
+			sum = arr[n - 1];
+			map.clear();
+			flag = true;
+			index = 1;
+			for (int ele : arr) {
+				if (!map.containsKey(ele))
+					map.put(ele, 0);
+				map.put(ele, map.get(ele) + 1);
+			}
+
+			if (map.get(arr[n - 1]) == 1)
+				map.remove(arr[n - 1]);
+			else
+				map.put(arr[n - 1], map.get(arr[n - 1]) - 1);
+
+			pairs[0] = new Pair(arr[n - 1], arr[j]);
+
+			// System.out.println(arr[n - 1] + " " + arr[j]);
+
+			if (map.get(arr[j]) == 1)
+				map.remove(arr[j]);
+			else
+				map.put(arr[j], map.get(arr[j]) - 1);
+
+			// System.out.println(map.containsKey(arr[j]));
+
+			for (int i = n - 2; i >= 0; i--) {
+				// System.out.println(arr[i] + " ");
+				if (!map.containsKey(arr[i])) continue;
+				if (map.get(arr[i]) == 1)
+					map.remove(arr[i]);
+				else
+					map.put(arr[i], map.get(arr[i]) - 1);
+				if (map.containsKey(sum - arr[i])) {
+					pairs[index++] = new Pair(arr[i], sum - arr[i]);
+
+					// System.out.println()
+					if (map.containsKey(sum - arr[i])) {
+						if (map.get(sum - arr[i]) <= 1)
+							map.remove(sum - arr[i]);
+						else
+							map.put(sum - arr[i], map.get(sum - arr[i]) - 1);
+					}
+					sum = arr[i];
+				} else {
+					flag = false;
+					break;
+				}
+			}
+			if (flag) {
+				sum = arr[n - 1] + arr[j];
+				break;
+			}
+		}
+
+		// for (int ele : arr) {
+		// 	if (map.containsKey(ele)) {
+		// 		sum = arr[n - 1] + ele;
+		// 		pairs[0] = new Pair(arr[n - 1], ele);
+		// 	}
+		// }
+
+		if (!flag) {
+			System.out.println("NO");
+		}
+
+		else {
+			System.out.println("YES");
+			System.out.println(sum);
+			for (Pair ele : pairs) {
+				if (ele == null) break;
+				System.out.println(ele.a + " " + ele.b);
+			}
+		}
 
 	}
 

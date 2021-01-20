@@ -18,8 +18,30 @@ class A {
 
 	static void solve() throws IOException {
 
+		StringBuilder res = new StringBuilder();
 
-
+		int n = sc.nextInt();
+		String s = sc.next();
+		for (int i = 0; i < n; i++) {
+			if (i == 0)
+				res.append(1);
+			else {
+				int temp = (s.charAt(i - 1) - '0') + (res.charAt(res.length() - 1) - '0');
+				if (temp == 2) {
+					if (s.charAt(i) == '1')
+						res.append(0);
+					else
+						res.append(1);
+				} else if (temp == 1) {
+					if (s.charAt(i) == '1')
+						res.append(1);
+					else
+						res.append(0);
+				} else
+					res.append(1);
+			}
+		}
+		System.out.println(res);
 	}
 
 	static class FastScanner {
