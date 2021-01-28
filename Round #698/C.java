@@ -18,7 +18,37 @@ class C {
 
 	static void solve() throws IOException {
 
+		int n = sc.nextInt();
 
+		long[] arr = new long[n];
+		int index = 0;
+		HashMap<Long, Integer> map1 = new HashMap<>();
+		HashMap<Long, Integer> map2 = new HashMap<>();
+
+		for (int i = 0; i < n; i++) {
+
+			long temp = sc.nextLong();
+
+			if (map1.containsKey(temp)) {
+				map2.put(temp, i);
+			} else {
+				arr[index++] = temp;
+				map1.put(temp, i);
+			}
+		}
+
+		HashSet<Integer> set = new HashSet<>();
+
+		for (long ele : arr) {
+
+			int ind1 = map1.get(ele);
+			int ind2 = map2.get(ele);
+
+			int t = ind2 - ind1;
+
+			if (set.contains())
+
+			}
 
 	}
 

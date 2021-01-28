@@ -18,7 +18,27 @@ class A {
 
 	static void solve() throws IOException {
 
+		int n = sc.nextInt();
 
+		long[] arr = new long[n];
+
+		for (int i = 0; i < n; i++)
+			arr[i] = sc.nextLong();
+
+		int res = 1;
+		int temp = 0;
+		int count = 0;
+
+		for (int i = 1; i < n; i++) {
+
+			if (arr[i] == arr[i - 1])
+				count++;
+			else
+				count = 0;
+			temp = Math.max(count, temp);
+		}
+
+		System.out.println(res + temp);
 
 	}
 
