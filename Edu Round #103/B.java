@@ -44,8 +44,9 @@ class B {
 			long val = arr[i] * 100;
 			if (((double)val / (double)(prefix[i - 1] + res)) <= k)
 				continue;
+			// System.out.println((prefix[i - 1] + res) * k);
 			long curr = (prefix[i - 1] + res) * k;
-			res += val - curr;
+			res += (val - curr) / k + (val - curr) % k;
 		}
 
 		sb.append(res + "\n");
