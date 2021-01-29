@@ -18,7 +18,24 @@ class A {
 
 	static void solve() throws IOException {
 
+		int n = sc.nextInt();
+		int k = sc.nextInt();
 
+		if (n == 1) {
+			System.out.println(k);
+			return;
+		} else if (n >= k) {
+			if (n % k == 0) {
+				System.out.println(1);
+				return;
+			}
+			System.out.println(2);
+		} else {
+			int temp = k / n;
+			if (k % n != 0)
+				temp++;
+			System.out.println(temp);
+		}
 
 	}
 
