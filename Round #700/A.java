@@ -18,7 +18,29 @@ class A {
 
 	static void solve() throws IOException {
 
+		String s = sc.next();
 
+		StringBuilder sb = new StringBuilder();
+
+		boolean flag = true;
+
+		for (int i = 0; i < s.length(); i++) {
+			if (flag) {
+				if (s.charAt(i) == 'a')
+					sb.append("b");
+				else
+					sb.append("a");
+				flag = false;
+			} else {
+				if (s.charAt(i) == 'z')
+					sb.append("y");
+				else
+					sb.append("z");
+				flag = true;
+			}
+		}
+
+		System.out.println(sb);
 
 	}
 
