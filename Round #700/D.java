@@ -10,15 +10,43 @@ class D {
 	static FastScanner sc = new FastScanner();
 
 	public static void main(String[] args) throws IOException {
-		int T = sc.nextInt();
-		while (T-- > 0) {
-			solve();
-		}
+		// int T = sc.nextInt();
+		// while (T-- > 0) {
+		solve();
+		// }
 	}
 
 	static void solve() throws IOException {
 
+		int n = sc.nextInt();
+		int[] arr = new int[n];
 
+		for (int i = 0; i < n; i++)
+			arr[i] = sc.nextInt();
+
+		int lastElement = -1;
+		int lastSecond = -1;
+
+		int res = n;
+
+		for (int i = 0; i < n; i++) {
+
+			// System.out.println("W" + lastElement + " " + "B" + lastSecond);
+
+			if (arr[i] != lastSecond && arr[i] != lastElement) {
+				if (i < n - 1 && arr[i + 1] != lastElement)
+					lastSecond = arr[i];
+				else
+					lastElement = arr[i];
+			} else if (arr[i] == lastSecond && arr[i] != lastElement)
+				lastElement = arr[i];
+			else if (arr[i] == lastElement && arr[i] != lastSecond)
+				lastSecond = arr[i];
+			else
+				res--;
+		}
+
+		System.out.print(res);
 
 	}
 
