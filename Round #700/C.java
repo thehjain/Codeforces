@@ -8,17 +8,44 @@ class C {
 	private static int MIN = Integer.MIN_VALUE;
 	private static int MOD = 1000000007;
 	static FastScanner sc = new FastScanner();
+	static int MAXN = 100010;
+	static int[] arr = new int[MAXN];
 
 	public static void main(String[] args) throws IOException {
-		int T = sc.nextInt();
-		while (T-- > 0) {
-			solve();
+		// int T = sc.nextInt();
+		// while (T-- > 0) {
+		solve();
+		// }
+	}
+
+	static void query(int mid, int n) {
+		if (1 <= mid && mid <= n) {
+			System.out.println("? " + mid);
+			System.out.flush();
+			arr[mid] = sc.nextInt();
 		}
 	}
 
 	static void solve() throws IOException {
 
+		int n = sc.nextInt();
 
+		arr[0] = arr[n + 1] = n + 1;
+
+		int low = 1, high = n;
+
+		while (low < high) {
+			int mid = low + (high - low) / 2;
+			query(mid, n);
+			query(mid + 1, n);
+			if (arr[mid] < arr[mid + 1])
+				high = mid;
+			else
+				low = mid + 1;
+		}
+
+		System.out.println("! " + low);
+		System.out.flush();
 
 	}
 
