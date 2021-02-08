@@ -26,39 +26,27 @@ class B {
 		int n = sc.nextInt();
 
 		long[] attack = new long[n];
-		long[] health = new long[n];
+		double[] health = new double[n];
 
-		for (int i = 0; i < n; i++)
-			attack[i] = sc.nextLong();
-		for (int i = 0; i < n; i++)
-			health[i] = sc.nextLong();
-
+		long max = MIN;
 		boolean flag = true;
 
 		for (int i = 0; i < n; i++) {
-			if (heroHealth < 1 && health[i] >= 1) {
-				flag = false;
+			attack[i] = sc.nextLong();
+			max = Math.max(max, attack[i]);
+		}
+		for (int i = 0; i < n; i++)
+			health[i] = sc.nextDouble();
+
+		heroHealth += max;
+
+		for (int i = 0; i < n; i++) {
+			heroHealth -= (long)Math.ceil(health[i] / heroAttack) * attack[i];
+			if (heroHealth < 0)
 				break;
-			}
-			long temp = health[i] / heroAttack;
-			heroHealth -= attack[i] * temp;
-			health[i] -= heroAttack * temp;
 		}
 
-		if (flag)
-			for (int i = 0; i < n; i++) {
-
-				if (health[i] == 0) continue;
-
-				if (health[i] > 0 && heroHealth < 1) {
-					flag = false;
-					break;
-				}
-
-				heroHealth -= attack[i];
-			}
-
-		if (flag)
+		if (heroHealth > 0)
 			sb.append("YES\n");
 		else
 			sb.append("NO\n");
