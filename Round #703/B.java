@@ -30,28 +30,20 @@ class B {
 			y[i] = sc.nextLong();
 		}
 
-		long sum = 0;
-		long res = Long.MAX_VALUE;
-		int count = 0;
-
-		for (int i = 0; i < n; i++) {
-			sum = 0;
-			long x_curr = x[i];
-			long y_curr = y[i];
-			for (int j = 0; j < n; j++) {
-				if (i == j) continue;
-				sum += distance(x_curr, y_curr, x[j], y[j]);
-			}
-			if (sum < res) {
-				res = sum;
-				count = 1;
-			} else if (sum == res) {
-				count++;
-			}
-
+		if (n % 2 == 1) {
+			sb.append("1\n");
+			return;
 		}
 
-		sb.append(count + "\n");
+		long res = 0;
+
+		Arrays.sort(x);
+		Arrays.sort(y);
+
+		res = (x[n / 2] - x[n / 2 - 1] + 1) * (y[n / 2] - y[n / 2 - 1] + 1);
+
+		sb.append(res + "\n");
+
 
 	}
 
