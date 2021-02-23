@@ -8,17 +8,46 @@ class B {
 	private static int MIN = Integer.MIN_VALUE;
 	private static int MOD = 1000000007;
 	static FastScanner sc = new FastScanner();
+	static StringBuilder sb = new StringBuilder();
 
 	public static void main(String[] args) throws IOException {
 		int T = sc.nextInt();
 		while (T-- > 0) {
 			solve();
 		}
+		System.out.print(sb);
 	}
 
 	static void solve() throws IOException {
 
+		int n = sc.nextInt();
 
+		int[] arr = new int[n];
+		int[] brr = new int[n];
+		HashMap<Integer, Integer> map = new HashMap<>();
+
+		for (int i = 0; i < n; i++) {
+			arr[i] = sc.nextInt();
+			brr[i] = arr[i];
+			map.put(arr[i], i);
+		}
+
+		Arrays.sort(brr);
+		HashSet<Integer> set = new HashSet<>();
+
+		int prev = n;
+		for (int i = n - 1; i >= 0; i--) {
+			if (set.contains(brr[i])) continue;
+			set.add(brr[i]);
+			int pos = map.get(brr[i]);
+			for (int j = pos; j < prev; j++) {
+				sb.append(arr[j] + " ");
+				set.add(arr[j]);
+			}
+			prev = pos;
+		}
+
+		sb.append("\n");
 
 	}
 
